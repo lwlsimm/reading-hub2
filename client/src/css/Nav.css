@@ -1,0 +1,40 @@
+.outerNav {
+    width: 100%;
+    background-color: var(--ruby);
+    height: 13vh;
+}
+
+.innerNav {
+    padding: 5px;
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+}
+
+.innerNav > * {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 10px;
+}
+
+.navLogo {
+    max-width: 5rem;
+}
+
+.mainHeader {
+    color: var(--yellow);
+}
+
+.navImageContainer {
+    grid-column: 1 / span 1;
+}
+
+.mainHeaderContainer {
+    grid-column: 2 / span 1;
+}
+
+.dropdown-toggle {
+    background-color: var(--ruby-selected) !important;
+    color: var(--yellow) !important;
+}
+

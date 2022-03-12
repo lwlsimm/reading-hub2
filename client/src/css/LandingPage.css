@@ -1,0 +1,50 @@
+.landingPage {
+    display: flex;
+
+}
+
+.landingPage > * {
+    width: 50%;
+    padding: 15px;
+}
+
+.paine1 > p {
+    text-align: justify;
+}
+
+.paine2 {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.landingBg {
+    max-width: 100%;
+    max-height: 90%;
+    border-radius: 10px;
+}
+
+.readSmarter {
+    text-align: center;
+}
+
+.bookPileImg {
+    width: 100px;
+    border-radius: 20px;
+}
+
+.getStarted {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    background-color: var(--olive-light);
+    margin: 20px 0;
+    width: 100%;
+    padding-bottom: 20px;
+}
+
+.getStarted:hover {
+    background-color: var(--olive-selected);
+}

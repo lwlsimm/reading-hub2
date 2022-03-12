@@ -1,0 +1,125 @@
+:root {
+    --danger: #db5461;
+    --danger-selected: #d83747;
+    --blue-light: #dfe7ec;
+    --blue: #aac7db;
+    --blue-selected: #89b0ce;
+    --green: #45c03e;
+    --green-selected: #24a11d;
+    --olive-light: #dfecb3;
+    --olive: #BADA55;
+    --olive-selected: #a6c443;
+    --yellow-light: #f5e0a7;
+    --yellow-light-off: #f1e1c3;
+    --yellow: #FFCA3A;
+    --yellow-selected: #dfae27;
+    --ruby: #A65089;
+    --ruby-selected:#8F3C73;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: poppins, sans-serif;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+body{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.innerPage {
+    max-width: 1000px;
+    align-items: center;
+    margin: auto;
+    padding: 5px;
+}
+
+.page {
+    height: 80vh;
+}
+
+@font-face {
+    font-family: poppins;
+    src: url('./assets/fonts/poppins/Poppins-Regular.ttf') format("truetype");
+}
+
+.bookItem {
+    width: 120px;
+    height: 150px;
+    margin: 10px;
+    background: no-repeat, linear-gradient(
+            rgba(0, 0, 0, 0.7),
+            rgba(0, 0, 0, 0.7)
+    );
+    background-size: cover;
+}
+
+.innerBookItem {
+    text-wrap: normal;
+    overflow-wrap: break-word;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left:0;
+    top: 0;
+    z-index: 1;
+}
+
+.innerBookText{
+    color: white !important;
+    font-size: 12px;
+}
+
+.bookItemTextContainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: absolute;
+    left:0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+}
+
+.overlay {
+    position: relative;
+    transition: all 1s;
+    z-index: 2;
+}
+
+.overlay:after {
+    z-index: 2;
+    content: '\A';
+    position: absolute;
+    width: 100%;
+    height:100%;
+    top:0;
+    left:0;
+    background:rgba(0,0,0,0.5);
+    opacity: 1;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+}
+.overlay:hover:after {
+    opacity: 0;
+}
+
+.descriptionBox {
+    max-height: 200px;
+    background-color: var(--yellow-light-off);
+    padding: 5px;
+    font-size: .85rem;
+}
+#addBook {
+    background-color: var(--yellow-light);
+}
