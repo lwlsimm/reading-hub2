@@ -15,12 +15,15 @@
     --yellow-selected: #dfae27;
     --ruby: #A65089;
     --ruby-selected:#8F3C73;
+
+    box-sizing: border-box;
 }
 
 * {
     margin: 0;
     padding: 0;
     font-family: poppins, sans-serif;
+
 }
 
 a {
@@ -31,6 +34,10 @@ body{
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+.mainHeader {
+    font-family: poppins-bold, sans-serif;
 }
 
 .innerPage {
@@ -47,6 +54,10 @@ body{
 @font-face {
     font-family: poppins;
     src: url('./assets/fonts/poppins/Poppins-Regular.ttf') format("truetype");
+}
+@font-face {
+    font-family: poppins-bold;
+    src: url('./assets/fonts/poppins/Poppins-Bold.ttf') format("truetype");
 }
 
 .bookItem {
@@ -116,10 +127,122 @@ body{
 
 .descriptionBox {
     max-height: 200px;
-    background-color: var(--yellow-light-off);
     padding: 5px;
-    font-size: .85rem;
+    font-size: .8rem;
+    line-height: 1rem;
 }
 #addBook {
+    margin-top: 20px;
     background-color: var(--yellow-light);
+    border-radius: 5px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+.detailParagraph {
+    font-size: .75rem;
+    margin-bottom: 4px !important;
+}
+.detailsHeader {
+    font-weight: bold;
+    font-family: 'poppins-bold';
+}
+
+.bookImageHolder {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.bookImageHolder img {
+    display: block;
+}
+
+.bookHeader {
+    font-family: 'poppins-bold';
+}
+.addBookDivider {
+    width: 90%;
+    margin: auto;
+}
+
+.createPlanRow {
+    font-size: .85rem;
+    text-align: center;
+}
+
+#addBook small {
+    margin-top: 5px;
+}
+
+#planTable {
+    margin-top: 20px;
+}
+
+#planTable thead {
+    background-color: var(--ruby-selected);
+    color: white;
+}
+
+#planTable tbody {
+    background-color: var(--blue);
+}
+
+#planTable input {
+    text-align: center;
+}
+
+#planTable .numberInput {
+    width: 100%;
+    text-align: center;
+}
+
+.simpleToast {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+}
+
+.simpleToast button {
+    visibility: hidden;
+}
+
+.simpleToast {
+    background-color: var(--ruby-selected) !important;
+    color: white !important;
+}
+
+.fade-in-image {
+    animation: fadeIn 2s;
+    -webkit-animation: fadeIn 2s;
+    -moz-animation: fadeIn 2s;
+    -o-animation: fadeIn 2s;
+    -ms-animation: fadeIn 2s;
+}
+@keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+@-moz-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+@-webkit-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+@-o-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+@-ms-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }

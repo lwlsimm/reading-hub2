@@ -11,4 +11,7 @@ apiRouter.use('/register',registerRouter);
 const searchRouter = require('./routes/search');
 apiRouter.use('/search',searchRouter);
 
+const booksRouter = require('./routes/books');
+apiRouter.use('/books',booksRouter)
+
 module.exports = apiRouter;

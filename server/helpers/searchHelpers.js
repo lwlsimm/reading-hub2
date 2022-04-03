@@ -31,7 +31,8 @@ const createBookArray = (bookData) => {
             author: item.volumeInfo.authors[0],
             description: item.volumeInfo.description,
             published: item.volumeInfo.publishedDate,
-            images: item.volumeInfo.imageLinks
+            images: item.volumeInfo.imageLinks,
+            additionalDetails: item
         }
         books.push(book);
     })
