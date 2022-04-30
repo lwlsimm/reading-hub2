@@ -31,6 +31,57 @@ async function savePlan(req,res,next) {
     }
 }
 
+async function updatePlan(req,res,next) {
+    try {
+        const {id, book_id} = req.body;
+        const plan = encodeData(req.body.plan);
+        const query = await pool.query("UPDATE books SET plan = $1 WHERE id = $2 AND user_id = $3 RETURNING id",[plan,book_id,id]);
+        if(query.rows[0]['id']) {
+            next()
+        } else {
+            throw new Error();
+        };
+    } catch (error) {
+        error.message = "Something went wrong saving your plan.  Please contact support";
+        res.status(401).send(error.message);
+    }
+}
+
+async function getBooksFromDB(req,res,next) {
+    try {
+        const query = await pool.query("SELECT bookobject,id,plan FROM books WHERE user_id = $1",[req.body.id]);
+        const books = [];
+        query.rows.forEach(book => {
+            books.push({
+                bookobject: extractData(book.bookobject),
+                id: book.id,
+                plan: extractData(book.plan)
+            })
+        })
+        req.body.books = books;
+        next()
+    } catch(error) {
+        error.message = "Something went wrong.  Please contact support";
+        res.status(401).send(error.message);
+    }
+}
+
+async function deleteBookFromDB(req,res,next) {
+    try {
+        const {book_id, id} = req.body;
+        const query = await pool.query("DELETE from books WHERE id = $1 AND user_id = $2 RETURNING id",[book_id,id]);
+        if(query.rows[0]['id']) {
+            next()
+        } else {
+            throw new Error();
+        };
+    } catch (error) {
+        error.message = "Something went wrong.  Please contact support";
+        res.status(401).send(error.message);
+    }
+}
+
+
 async function savePlanToDB(basic_details, plan_scheme, user_id) {
     try {
         const {id} = basic_details;
@@ -80,3 +131,6 @@ function createBookId (bookObj) {
 
 exports.createPlan = createPlan;
 exports.savePlan = savePlan;
+exports.getBooksFromDB = getBooksFromDB;
+exports.updatePlan = updatePlan;
+exports.deleteBookFromDB = deleteBookFromDB;

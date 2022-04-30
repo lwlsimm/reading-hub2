@@ -57,6 +57,7 @@ class ReadingPlan {
         return {
             title: this.book_data.title,
             googleLink: this.book_data.additionalDetails.volumeInfo.canonicalVolumeLink,
+            additionalDetails: this.book_data.additionalDetails,
             author: this.book_data.author,
             images: this.book_data.images,
             id: this.id,
