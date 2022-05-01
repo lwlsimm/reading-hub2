@@ -34,6 +34,62 @@ async function createReadingPlan(planDetails,token) {
     }
 }
 
+async function deleteBookFromServer(token,id) {
+    try {
+        const request = await axios.post(path+'books/delete',
+            {
+                token: token,
+                book_id: id
+            });
+        if(request.data.success) {
+            return { success: true}
+        } else {
+            return { success: false}
+        }
+    } catch (e) {
+        return { success: false}
+    }
+}
+
+async function getMyBooks(token) {
+    try {
+        const request = await axios.post(path+'books/get',
+            {
+                token: token,
+            })
+        const books = [];
+        request.data.books.forEach(data => {
+            const book = data.bookobject;
+            book.plan = data.plan;
+            books.push(book)
+        });
+        return {
+            success: request.data.success,
+            books: books
+        };
+    } catch (e) {
+        return { success: false}
+    }
+}
+
+async function savePlanProgress(id,plan,token) {
+    try {
+        const request = await axios.post(path+'books/update',
+            {
+                token: token,
+                book_id: id,
+                plan: plan
+            });
+        if(request.data.success) {
+            return { success: true}
+        } else {
+            return { success: false}
+        }
+    } catch (e) {
+        return { success: false}
+    }
+}
+
 async function saveReadingPlan(book,plan,token) {
     try {
         const request = await axios.post(path+'books/save',
@@ -52,4 +108,4 @@ async function saveReadingPlan(book,plan,token) {
     }
 }
 
-export {searchGoogleBooks, createReadingPlan, saveReadingPlan}
+export {searchGoogleBooks, createReadingPlan, saveReadingPlan, getMyBooks,savePlanProgress, deleteBookFromServer}

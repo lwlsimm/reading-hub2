@@ -1,69 +1,27 @@
-import booksReducer from "../store/booksReducer";
+import booksSearchReducer from "../store/booksSearchReducer";
 import {useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import {Button, Col, Container, Row} from "react-bootstrap";
 import {useNavigate} from "react-router-dom";
 import {createReadingPlan} from "../functions/bookFunctions";
 import ReadingPlan from "../components/ReadingPlan";
+import CreateRedaingPlan from "../components/CreateReadingPlan";
 
 export default function AddBook() {
 
-    const [start,setStart] = useState(1);
-    const [end,setEnd] = useState(2);
-    const [measure,setMeasure] = useState('Pages');
-    const [mode,setMode] = useState('endDate');
-    const [startDate,setStartDate] = useState('');
-    const [endDate,setEndDate] = useState('');
-    const [measurePerDay,setMeasurePerDay] = useState('');
-    const [formValid,setFormValid] = useState(false);
-    const [image,setImage] = useState('./');
-    const [plan,setPlan] = useState({});
-    const [bookFromServer,setBookFromServer] = useState({});
 
-    const book = useSelector(state => state.booksReducer.selectedBookForReadingPlan);
-    const token = useSelector(state => state.loginReducer.token);
-    const navigate = useNavigate();
+    const [bookFromServer,setBookFromServer] = useState({});
+    const [image,setImage] = useState('./');
 
     useEffect(()=> {
-        if(!book.hasOwnProperty('title')) {
-            navigate('/account');
-        }
-        if(mode === "endDate") {
-            if(startDate !== "" && endDate !== "" && endDate >= startDate && measure && start && end && end >= start) {
-                setFormValid(true);
-            } else {
-                setFormValid(false);
-            }
-        } else {
-            if(startDate !== "" && measurePerDay && measure && start && end && end >= start) {
-                setFormValid(true);
-            } else {
-                setFormValid(false);
-            }
-        }
         if("images" in book) {
             if("thumbnail" in book.images) {
                 setImage(book.images.thumbnail);
             }
         }
-    },[startDate,endDate,start,end,measure,measurePerDay,mode,plan]);
+    })
 
-    async function createPlan() {
-        const responseData = await createReadingPlan({
-            start: start,
-            end: end,
-            measure: measure,
-            mode: mode,
-            startDate: startDate,
-            endDate: endDate,
-            measurePerDay: measurePerDay,
-            book: book,
-        },token);
-        if(responseData.success) {
-            setPlan(responseData.plan);
-            setBookFromServer(responseData.book);
-        }
-    }
+    const book = useSelector(state => state.booksSearchReducer.selectedBookForReadingPlan);
 
     return (
         <Container>
@@ -131,61 +89,12 @@ export default function AddBook() {
                 <div className="addBookDivider">
                     <hr/>
                 </div>
+                    <CreateRedaingPlan
+                        book={book}
+                        setBookFromServer={setBookFromServer}
+                        bookFromServer={bookFromServer}
+                    />
 
-                <Row className='p-2 createPlanRow align-items-start'>
-                    <Col sm={12}>
-                        <h5 className='mb-3 text-center bookHeader'>Create a Reading Plan</h5>
-                    </Col>
-                    <Col sm={12} md={6}
-                         className='p-3 d-flex flex-column align-items-center justify-content-center'>
-                        <small className='text-center'>I will measure progress by</small>
-                        <select className='w-75 p-1' onChange={e => setMeasure(e.target.value)}>
-                            <option>Pages</option>
-                            <option>Percentage</option>
-                            <option>Locations</option>
-                        </select>
-                        <small className='text-center'>Yoo are starting at {measure.toLowerCase()} no. :</small>
-                        <input type='number' className='w-75 p-1'
-                               onChange={e => setStart(parseInt(e.target.value))}/>
-                        <small className='text-center'>You are ending at {measure.toLowerCase()} no. :</small>
-                        <input type='number' className='w-75 p-1'
-                               onChange={e => setEnd(parseInt(e.target.value))}/>
-
-                        <small className='text-center'>I want to...</small>
-                        <select className='w-75 p-1' onChange={e => setMode(e.target.value)}>
-                            <option value="endDate">Start and end on specific dates</option>
-                            <option value='perDay'>Read a set number of {measure.toLowerCase()} per day</option>
-                        </select>
-                        <small className='text-center mt-2'>Start Date</small>
-                        <input type='date' className='w-75 p-1' onChange={e => setStartDate(e.target.value)}/>
-                        {mode === 'endDate' ?
-                            <>
-                                <small className='text-center mt-2'>End Date</small>
-                                <input type='date' className='w-75 p-1'
-                                       onChange={e => setEndDate(e.target.value)}/>
-                            </> :
-                            <>
-                                <small className='text-center mt-2'>How may {measure.toLowerCase()} per
-                                    day</small>
-                                <input type='number' className='w-75 p-1'
-                                       onChange={e => setMeasurePerDay(e.target.value)}/>
-                            </>
-                        }
-
-
-                        <Button variant="success" size='sm' className='mt-3' disabled={!formValid}
-                        onClick={createPlan}
-                        >
-                            Create My Reading Plan
-                        </Button>
-                    </Col>
-                    <Col sm={12} md={6}>
-                        {Object.keys(plan).length > 0 ?
-                        <ReadingPlan plan={plan} book={bookFromServer}/>
-                        : null
-                        }
-                    </Col>
-                </Row>
             </div>
         </Container>
     )

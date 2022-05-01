@@ -69,6 +69,7 @@ body{
             rgba(0, 0, 0, 0.7)
     );
     background-size: cover;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,1);
 }
 
 .innerBookItem {
@@ -189,6 +190,7 @@ body{
 
 #planTable input {
     text-align: center;
+    font-size: 0.8rem;
 }
 
 #planTable .numberInput {
@@ -245,4 +247,16 @@ body{
     100% {
         opacity: 1;
     }
+}
+.updateModal {
+    display: flex;
+    flex-direction: column;
+
+}
+.updateModal img {
+    align-self: center;
+}
+
+.checkbox {
+    width: 100%;
 }

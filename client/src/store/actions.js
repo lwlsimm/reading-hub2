@@ -13,39 +13,59 @@ export const logout = () => {
 
 export const addBooks = item => {
     return {
-        type: 'books/addBooks',
+        type: 'booksSearch/addBooks',
         payload: item
     }
 }
 
 export const clearBooks = () => {
     return {
-        type: 'books/clearBooks'
+        type: 'booksSearch/clearBooks'
     }
 }
 
 export const addSelectedBookFromSearch = item => {
     return {
-        type: 'books/addSelectedBookFromSearch',
+        type: 'booksSearch/addSelectedBookFromSearch',
         payload: item
     }
 }
 
 export const clearSelectedBookFromSearch = () => {
     return {
-        type: 'books/clearSelectedBookFromSearch'
+        type: 'booksSearch/clearSelectedBookFromSearch'
     }
 }
 
 export const addSelectedBookForReadingPlan = (item) => {
     return {
-        type: 'books/addSelectedBookForReadingPlan',
+        type: 'booksSearch/addSelectedBookForReadingPlan',
         payload: item
     }
 }
 
 export const clearSelectedBookForReadingPlan = () => {
     return {
-        type: 'books/clearSelectedBookForReadingPlan'
+        type: 'booksSearch/clearSelectedBookForReadingPlan'
+    }
+}
+
+export const addMyBooksFromServer = item => {
+    return {
+        type: 'myBooks/addMyBooksFromServer',
+        payload: item
+    }
+}
+
+export const addSelectedMyBook = item => {
+    return {
+        type: 'myBooks/addSelectedMyBook',
+        payload: item
+    }
+}
+
+export const clearSelectedMyBook = () => {
+    return {
+        type: 'myBooks/clearSelectedMyBook'
     }
 }

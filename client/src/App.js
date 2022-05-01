@@ -11,7 +11,7 @@ import NavComponent from './components/NavComponent';
 import LandingPage from "./pages/LandingPage";
 import LoginPage from "./pages/LoginPage";
 import LogoutPage from './pages/LogoutPage';
-import MyAccount from './pages/MyAccount'
+import MyBooks from './pages/MyBooks'
 import {isTokenValid} from "./functions/loginFunctions";
 import {useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -49,7 +49,7 @@ export default function App () {
                             <Route path='/' element={<LandingPage/>} />
                             <Route path="/login" element={<LoginPage/>} />
                             <Route path="/logout" element={<LogoutPage/>}/>
-                            <Route path="/account" element={<MyAccount/>}/>
+                            <Route path="/my-books" element={<MyBooks/>}/>
                             <Route path="/add-book" element={<AddBook/>}/>
                         </Routes>
                     </div>

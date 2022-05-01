@@ -1,4 +1,4 @@
-import {addSelectedBookFromSearch} from "../../store/actions";
+import {addSelectedBookFromSearch, addSelectedMyBook} from "../../store/actions";
 import { useDispatch } from "react-redux";
 
 export default function BookItem(props) {
@@ -15,7 +15,8 @@ export default function BookItem(props) {
     }
 
     const handleSelect = () => {
-        dispatch(addSelectedBookFromSearch(data));
+        if(props.mode === 'search')dispatch(addSelectedBookFromSearch(data));
+        if(props.mode === 'myBooks')dispatch(addSelectedMyBook(data));
     };
 
     return(

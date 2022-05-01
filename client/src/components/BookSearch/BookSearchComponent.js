@@ -3,13 +3,13 @@ import {searchGoogleBooks} from "../../functions/bookFunctions";
 import { useState} from "react";
 import SearchResultViewer from "./SearchResultViewer";
 import {addBooks} from "../../store/actions";
-import booksReducer from "../../store/booksReducer";
+import booksSearchReducer from "../../store/booksSearchReducer";
 
 
 export default function BookSearchComponent() {
 
     const dispatch = useDispatch();
-    const selectedBookFromSearch = useSelector(state => booksReducer.selectedBookFromSearch);
+    const selectedBookFromSearch = useSelector(state => booksSearchReducer.selectedBookFromSearch);
     const [author, setAuthor] = useState('plotkin');
     const [title, setTitle] = useState('opera 101');
     const initialTitle = "Search Google Books";
@@ -63,7 +63,7 @@ export default function BookSearchComponent() {
                     </button>
                 </div>
                 <div className="row">
-                    <SearchResultViewer />
+                    <SearchResultViewer mode={'search'}/>
                 </div>
             </form>
         </div>

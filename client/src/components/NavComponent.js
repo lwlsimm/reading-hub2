@@ -28,7 +28,7 @@ function NavComponent () {
                             {loggedIn?'Logout':'Login / Register'}
                         </Dropdown.Item>
                         {loggedIn?
-                            <Dropdown.Item href="/account">My Account</Dropdown.Item>
+                            <Dropdown.Item href="/my-books">My Books</Dropdown.Item>
                             :null}
 
                         <Dropdown.Item href="#">Something else</Dropdown.Item>
