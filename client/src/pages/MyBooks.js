@@ -15,6 +15,8 @@ import {useNavigate} from "react-router-dom";
 import {deleteBookFromServer, getMyBooks} from "../functions/bookFunctions";
 import BookModal from "../components/Modals/BookModal";
 import AddBook from "./AddBook";
+import CreateReadingPlan from "../components/CreateReadingPlan";
+import TodayReadingComponent from "../components/TodayReadingComponent";
 
 export default function MyBooks() {
 
@@ -28,8 +30,13 @@ export default function MyBooks() {
 
     const [showModal, setShowModal] = useState(!isSelectedSearchBookObjectEmpty);
     const [book,setBook] = useState({});
-    const [image,setImage] = useState('');
+    const [image,setImage] = useState('./defaultSmallBooks.png');
     const [mode,setMode] = useState('');
+    const [customTitle,setCustomTitle] = useState('');
+    const [customAuthor,setCustomAuthor] = useState('');
+    const [showTodaysReading,setShowTodaysReading] = useState(false);
+
+
 
     const handleCloseModal = () => {
         dispatch(clearSelectedBookFromSearch());
@@ -47,7 +54,8 @@ export default function MyBooks() {
         if(!token) return;
         const response = await getMyBooks(token);
         if(response.books) {
-            dispatch(addMyBooksFromServer(response.books))
+            dispatch(addMyBooksFromServer(response.books));
+            setShowTodaysReading(true);
         }
     }
 
@@ -94,7 +102,7 @@ export default function MyBooks() {
 
     return(
         <div>
-            <Container>
+            <Container className='mb-4'>
 
                 <Modal show={showModal} onHide={handleCloseModal}>
                     <BookModal
@@ -104,6 +112,12 @@ export default function MyBooks() {
                         deleteBook={deleteBook}
                     />
                 </Modal>
+
+                <Row>
+                    <h2 className="text-center py-4">Next Reading</h2>
+                    {showTodaysReading? <TodayReadingComponent getBooks={getBooks}/>: null}
+                </Row>
+
                 <Row>
                     <h2 className="text-center py-4">My Books</h2>
                 </Row>
@@ -122,9 +136,26 @@ export default function MyBooks() {
                             </Accordion.Body>
                         </Accordion.Item>
                         <Accordion.Item eventKey="2">
-                            <Accordion.Header>Accordion Item #2</Accordion.Header>
+                            <Accordion.Header>Add Custom Book</Accordion.Header>
                             <Accordion.Body>
-
+                                <div className="row">
+                                    <div className="col">
+                                        <input type="text" className="form-control" placeholder="Book Title"
+                                               onChange={(e)=>{
+                                                   setCustomTitle(e.target.value)
+                                               }} value={customTitle}
+                                        />
+                                    </div>
+                                    <div className="col">
+                                        <input type="text" className="form-control" placeholder="Author Name"
+                                               onChange={(e) => {
+                                                   setCustomAuthor(e.target.value)
+                                               }} value={customAuthor}/>
+                                    </div>
+                                </div>
+                                <CreateReadingPlan
+                                    getBooks={getBooks}
+                                    book={{title: customTitle, author: customAuthor}}/>
                             </Accordion.Body>
                         </Accordion.Item>
                     </Accordion>

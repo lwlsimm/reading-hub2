@@ -80,11 +80,11 @@ export default function ReadingPlan(props) {
                 <tbody>
                 {plan.map((item,i) => {
                     return(<tr key={'rp-input-' + i}>
-                            <th>{item.day}</th>
-                            <th><input type="date" value={getDate(item.date)} onChange={e=>changeInput(e.target.value,i,'date',true)}/></th>
-                            <th><input type='number' className="numberInput" value={item.from} onChange={e=>changeInput(e.target.value,i,'from')}></input></th>
-                            <th><input type='number' className="numberInput" value={item.to} onChange={e=>changeInput(e.target.value,i,'to')}></input></th>
-                            <th><input type='checkbox' className='checkbox' checked={item.completed} onChange={e=>changeInput(e.target.checked,i,'completed')}></input></th>
+                            <td>{item.day}</td>
+                            <td><input type="date" value={getDate(item.date)} onChange={e=>changeInput(e.target.value,i,'date',true)}/></td>
+                            <td><input type='number' className="numberInput" value={item.from} onChange={e=>changeInput(e.target.value,i,'from')}></input></td>
+                            <td><input type='number' className="numberInput" value={item.to} onChange={e=>changeInput(e.target.value,i,'to')}></input></td>
+                            <td><input type='checkbox' className='checkbox' checked={item.completed} onChange={e=>changeInput(e.target.checked,i,'completed')}></input></td>
                         </tr>)
 
                 })}

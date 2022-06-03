@@ -22,16 +22,15 @@ function NavComponent () {
                         <a href="/"><h1 className="mainHeader">My Reading Hub</h1></a>
                     </div>
                     <DropdownButton id="dropdown-basic-button" title="Menu" variant="purple">
+                        {loggedIn?
+                            <Dropdown.Item href="/my-books">My Books</Dropdown.Item>
+                            :null}
+                        <Dropdown.Item href="#">Settings</Dropdown.Item>
                         <Dropdown.Item
                             href={loggedIn?"/logout":"/login"}
                         >
                             {loggedIn?'Logout':'Login / Register'}
                         </Dropdown.Item>
-                        {loggedIn?
-                            <Dropdown.Item href="/my-books">My Books</Dropdown.Item>
-                            :null}
-
-                        <Dropdown.Item href="#">Something else</Dropdown.Item>
                     </DropdownButton>
                 </div>
            </div>

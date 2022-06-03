@@ -6,7 +6,7 @@ export default function BookItem(props) {
     const dispatch = useDispatch();
     const data = props.bookData;
 
-    let image = './'
+    let image = ' ./defaultSmallBook.png';
 
     if("images" in data) {
         if("thumbnail" in data.images) {

@@ -5,7 +5,7 @@ import React, {useState} from 'react';
 export default function BookModal(props) {
 
     const book = props.book;
-    let image = '';
+    let image = './defaultSmallBook.png';
     const mode = props.mode;
     const [deleteSure,setDeleteSure] = useState(false);
 

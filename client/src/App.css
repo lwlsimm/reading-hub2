@@ -65,11 +65,11 @@ body{
     height: 150px;
     margin: 10px;
     background: no-repeat, linear-gradient(
-            rgba(0, 0, 0, 0.7),
-            rgba(0, 0, 0, 0.7)
+            rgba(255, 255, 255,0.7),
+            rgba(255, 255, 255,0.7)
     );
     background-size: cover;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,1);
+    box-shadow: 0 8px 16px 0 rgba(255, 255, 255,0.7);
 }
 
 .innerBookItem {
@@ -81,6 +81,8 @@ body{
     left:0;
     top: 0;
     z-index: 1;
+    background: no-repeat;
+    background-size: cover;
 }
 
 .innerBookText{
@@ -259,4 +261,19 @@ body{
 
 .checkbox {
     width: 100%;
+}
+
+.doneBtn {
+    font-size: 0.7rem !important;
+    padding: 3px 5px !important;
+}
+
+th {
+    text-align: center !important;
+    font-size: 0.8rem !important;
+}
+
+td {
+    font-size: 0.85rem;
+    text-align: center;
 }

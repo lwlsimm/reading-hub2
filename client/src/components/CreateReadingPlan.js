@@ -7,7 +7,8 @@ import {useNavigate} from "react-router-dom";
 
 export default function CreateReadingPlan(props) {
 
-    const {book,bookFromServer} = props;
+    const {book} = props;
+    const [bookFromServer,setBookFromServer] = useState({});
 
     const token = useSelector(state => state.loginReducer.token);
     const navigate = useNavigate();
@@ -24,7 +25,7 @@ export default function CreateReadingPlan(props) {
 
     useEffect(()=> {
         if(!book.hasOwnProperty('title')) {
-            navigate('/account');
+            navigate('/my-books');
         }
         if(mode === "endDate") {
             if(startDate !== "" && endDate !== "" && endDate >= startDate && measure && start && end && end >= start) {
@@ -54,8 +55,9 @@ export default function CreateReadingPlan(props) {
         },token);
         if(responseData.success) {
             setPlan(responseData.plan);
-            props.setBookFromServer(responseData.book);
+            setBookFromServer(responseData.book);
         }
+        props.getBooks();
     }
 
     return(

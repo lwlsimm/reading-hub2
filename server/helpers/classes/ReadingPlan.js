@@ -11,6 +11,15 @@ class ReadingPlan {
         this.msPerDay = 24*60*60*1000;
         this.book_data = book_data;
         this.plan_scheme = plan_scheme;
+        if(!book_data.hasOwnProperty("additionalDetails")) {
+            this.book_data.additionalDetails = {
+                volumeInfo: {
+                    canonicalVolumeLink: ""
+                },
+                images: ""
+
+            }
+        }
         if(mode === "endDate") {
             this.plan_endDate = new Date(endDate);
         } else {

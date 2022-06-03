@@ -9,9 +9,7 @@ import CreateRedaingPlan from "../components/CreateReadingPlan";
 
 export default function AddBook() {
 
-
-    const [bookFromServer,setBookFromServer] = useState({});
-    const [image,setImage] = useState('./');
+    const [image,setImage] = useState('./defaultSmallBook.png');
 
     useEffect(()=> {
         if("images" in book) {
@@ -90,9 +88,8 @@ export default function AddBook() {
                     <hr/>
                 </div>
                     <CreateRedaingPlan
+                        getBooks={()=>{return null}}
                         book={book}
-                        setBookFromServer={setBookFromServer}
-                        bookFromServer={bookFromServer}
                     />
 
             </div>
