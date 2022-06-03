@@ -2,6 +2,9 @@ const express = require('express')
 const app = express()
 const PORT = process.env.PORT || 5500;
 const cors = require('cors');
+const path = require('path');
+const dotenv = require('dotenv')
+dotenv.config()
 
 
 
@@ -12,6 +15,11 @@ app.use(cors());
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
+
+if(process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, "client/build")));
+};
+
 
 app.get('/', (req, res) => {
     res.send('Hello World!')
