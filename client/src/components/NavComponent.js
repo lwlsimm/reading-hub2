@@ -10,25 +10,31 @@ import {useNavigate} from "react-router-dom";
 function NavComponent () {
 
     const loggedIn = useSelector(state => state.loginReducer.loggedIn);
-
+    const navigate = useNavigate();
 
 
     return (
            <div className="outerNav">
                 <div className="innerPage innerNav">
                     <div className="navImageContainer">
-                        <a href="/"><img src={booksImage} className="navLogo"/></a>
+                        <a onClick={()=>navigate('/')}><img src={booksImage} className="navLogo"/></a>
                     </div>
                     <div className="mainHeaderContainer">
-                        <a href="/"><h1 className="mainHeader">My Reading Hub</h1></a>
+                        <a onClick={()=>navigate('/')}><h1 className="mainHeader">My Reading Hub</h1></a>
                     </div>
                     <DropdownButton id="dropdown-basic-button" title="Menu" variant="purple">
                         {loggedIn?
-                            <Dropdown.Item href="/my-books">My Books</Dropdown.Item>
+                            <Dropdown.Item onClick={()=>navigate('/my-books')}>My Books</Dropdown.Item>
                             :null}
                         <Dropdown.Item href="#">Settings</Dropdown.Item>
                         <Dropdown.Item
-                            href={loggedIn?"/logout":"/login"}
+                            onClick={()=> {
+                                if(loggedIn) {
+                                    navigate('/logout')
+                                } else {
+                                    navigate('/login')
+                                }
+                            }}
                         >
                             {loggedIn?'Logout':'Login / Register'}
                         </Dropdown.Item>
