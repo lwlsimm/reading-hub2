@@ -2,7 +2,7 @@ import env from "react-dotenv";
 
 const axios = require('axios');
 const myStorage = window.localStorage;
-const path = env.NODE_ENV === "production" ? env.PROD_PATH : env.DEV_PATH;
+const path = env.NODE_ENV === "production" ? "https://my-reading-hub.herokuapp.com/api/" : env.DEV_PATH;
 
 
 function registerNewUser () {
