@@ -1,6 +1,6 @@
 import env from "react-dotenv";
 const axios = require('axios');
-const path = env.NODE_ENV === "PROD" ? env.PROD_PATH : env.DEV_PATH;
+const path = env.NODE_ENV === "production" ? env.PROD_PATH : env.DEV_PATH;
 
 async function searchGoogleBooks(title,author,token) {
     try {
