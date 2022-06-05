@@ -34,6 +34,7 @@ async function isTokenValid(token) {
 
 async function loginUser(email, password) {
     try {
+        console.log(env.NODE_ENV)
         const emailIsValid = isEmailValid(email);
         if(!emailIsValid) {
             throw new Error('The email is not in a valid format.  Please try again');
