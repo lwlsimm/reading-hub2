@@ -31,7 +31,6 @@ function LoginComponent () {
 
                         <Form.Label>Email address</Form.Label>
                         <Form.Control type="email" placeholder="Enter email"
-                                      value="abc123@gmail.com"
                                       />
                         <Form.Text className="text-muted">
                             We'll never share your email with anyone else.
@@ -41,7 +40,6 @@ function LoginComponent () {
                     <Form.Group className="mb-3" controlId="loginPassword">
                         <Form.Label>Password</Form.Label>
                         <Form.Control type="password" placeholder="Password"
-                                        value="123abc!!Vb"
                         />
                     </Form.Group>
 
