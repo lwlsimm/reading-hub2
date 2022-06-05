@@ -2,7 +2,7 @@ import env from "react-dotenv";
 
 const axios = require('axios');
 const myStorage = window.localStorage;
-const path = env.NODE_ENV === "DEV" ? env.DEV_PATH:env.PROD_PATH ;
+const path = env.NODE_ENV === "DEV" ? env.DEV_PATH : env.PROD_PATH ;
 
 
 function registerNewUser () {
