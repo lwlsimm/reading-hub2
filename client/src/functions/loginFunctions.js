@@ -2,7 +2,7 @@ import env from "react-dotenv";
 
 const axios = require('axios');
 const myStorage = window.localStorage;
-const path = env.NODE_ENV === "DEV" ? env.DEV_PATH:"https://my-reading-hub.herokuapp.com/api/" ;
+const path = env.NODE_ENV === "DEV" ? env.DEV_PATH:env.PROD_PATH ;
 
 
 function registerNewUser () {
@@ -34,7 +34,6 @@ async function isTokenValid(token) {
 
 async function loginUser(email, password) {
     try {
-        console.log(env.NODE_ENV)
         const emailIsValid = isEmailValid(email);
         if(!emailIsValid) {
             throw new Error('The email is not in a valid format.  Please try again');
