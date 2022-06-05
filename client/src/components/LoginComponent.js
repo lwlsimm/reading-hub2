@@ -37,6 +37,7 @@ function LoginComponent () {
                         </Form.Text>
                     </Form.Group>
 
+
                     <Form.Group className="mb-3" controlId="loginPassword">
                         <Form.Label>Password</Form.Label>
                         <Form.Control type="password" placeholder="Password"
